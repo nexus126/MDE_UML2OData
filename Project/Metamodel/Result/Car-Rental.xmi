@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:OData="http://odatamodel.com" xsi:schemaLocation="http://odatamodel.com ../OData.ecore">
+  <OData:ODSchema namespace="com.example.OData.CR" alias="Ciao">
+    <odcomplextype name="Location" baseType="/0/@odcomplextype.0">
+      <properties type="/2" name="Street" defaultValue="null"/>
+      <properties type="/2" name="City" defaultValue="null"/>
+      <properties type="/3" name="Civic" defaultValue="null"/>
+    </odcomplextype>
+    <entitytypes name="Hub">
+      <navigationproperties name="Cars" containsTarget="true" partner="/0/@entitytypes.0/@navigationproperties.0"/>
+      <properties type="/3" name="ID" defaultValue="null"/>
+      <properties type="/2" name="name" defaultValue="null"/>
+      <properties type="/2" name="surname" defaultValue="null"/>
+      <properties type="/0/@odcomplextype.0" name="Location" defaultValue="null"/>
+      <propertykeyref alias="ID" property="/0/@entitytypes.0/@properties.0"/>
+    </entitytypes>
+    <entitytypes name="Car">
+      <navigationproperties name="Hub" containsTarget="true" partner="/0/@entitytypes.1/@navigationproperties.0"/>
+      <navigationproperties name="Driver" containsTarget="true" partner="/0/@entitytypes.1/@navigationproperties.1"/>
+      <properties type="/2" name="CarRegistration" defaultValue="null"/>
+      <properties type="/4" name="Price" defaultValue="null"/>
+      <properties type="/5" name="isAvailable" defaultValue="null"/>
+      <propertykeyref alias="CarRegistration" property="/0/@entitytypes.1/@properties.0"/>
+    </entitytypes>
+    <entitytypes name="Driver">
+      <navigationproperties type="/6" name="Car" containsTarget="true" partner="/0/@entitytypes.2/@navigationproperties.0"/>
+      <properties type="/2" name="FiscalCode" defaultValue="null"/>
+      <properties type="/2" name="Name" defaultValue="null"/>
+      <properties type="/2" name="Surname" defaultValue="null"/>
+      <propertykeyref alias="FiscalCode" property="/0/@entitytypes.2/@properties.0"/>
+    </entitytypes>
+  </OData:ODSchema>
+  <OData:ODEntityContainer>
+    <entitysets name="Hubs">
+      <navigationpropertybindings path="Cars" target="Cars"/>
+    </entitysets>
+    <entitysets name="Cars">
+      <navigationpropertybindings path="Hub" target="Hubs"/>
+      <navigationpropertybindings path="Driver" target="Drivers"/>
+    </entitysets>
+    <entitysets name="Drivers">
+      <navigationpropertybindings path="Car" target="Cars"/>
+    </entitysets>
+  </OData:ODEntityContainer>
+  <OData:ODPrimitiveType name="String"/>
+  <OData:ODPrimitiveType name="Integer"/>
+  <OData:ODPrimitiveType name="Real"/>
+  <OData:ODPrimitiveType name="Boolean"/>
+  <OData:ODPrimitiveType name="Car"/>
+</xmi:XMI>
