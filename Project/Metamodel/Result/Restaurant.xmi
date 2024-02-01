@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:OData="http://odatamodel.com" xsi:schemaLocation="http://odatamodel.com ../OData.ecore">
+  <OData:ODSchema namespace="com.example.OData.R" alias="Ciao">
+    <odenumtype>
+      <odmember name="Tuesday"/>
+      <odmember name="Wednesday"/>
+      <odmember name="Thursday"/>
+      <odmember name="Friday"/>
+      <odmember name="Saturday"/>
+      <odmember name="Sunday"/>
+    </odenumtype>
+    <odcomplextype name="Address" baseType="/0/@odcomplextype.0">
+      <properties type="/2" name="Street" defaultValue="null"/>
+      <properties type="/2" name="City" defaultValue="null"/>
+      <properties type="/2" name="State" defaultValue="null"/>
+      <properties type="/2" name="ZipCode" defaultValue="null"/>
+      <properties type="/2" name="Country" defaultValue="null"/>
+    </odcomplextype>
+    <odcomplextype name="OpeningDays" baseType="/0/@odcomplextype.1"/>
+    <entitytypes name="Restaurant">
+      <properties type="/2" name="Name" defaultValue="null"/>
+      <properties type="/0/@odcomplextype.0" name="Address" defaultValue="null"/>
+      <properties type="/2" name="kitchen" defaultValue="null"/>
+      <properties type="/3" name="isGlutenFree" defaultValue="null"/>
+      <properties type="/0/@odcomplextype.1" name="OpeningDays" defaultValue="null"/>
+      <propertykeyref alias="Name" property="/0/@entitytypes.0/@properties.0"/>
+      <propertykeyref alias="Address" property="/0/@entitytypes.0/@properties.1"/>
+    </entitytypes>
+  </OData:ODSchema>
+  <OData:ODEntityContainer>
+    <entitysets name="Restaurants"/>
+  </OData:ODEntityContainer>
+  <OData:ODPrimitiveType name="String"/>
+  <OData:ODPrimitiveType name="Boolean"/>
+</xmi:XMI>
