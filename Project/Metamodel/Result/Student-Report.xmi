@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:OData="http://odatamodel.com" xsi:schemaLocation="http://odatamodel.com ../OData.ecore">
+  <OData:ODSchema namespace="com.example.OData.SR" alias="Ciao">
+    <odcomplextype name="Report" baseType="/0/@odcomplextype.0">
+      <properties type="/3" name="Absences" defaultValue="null"/>
+      <properties type="/3" name="Literature" defaultValue="null"/>
+      <properties type="/3" name="Mathematics" defaultValue="null"/>
+      <properties type="/3" name="Science" defaultValue="null"/>
+      <properties type="/4" name="PassTheYear" defaultValue="null"/>
+    </odcomplextype>
+    <odcomplextype name="PersonInfo" baseType="/0/@odcomplextype.1">
+      <properties type="/2" name="Sex" defaultValue="null"/>
+      <properties type="/3" name="Age" defaultValue="null"/>
+    </odcomplextype>
+    <entitytypes name="Teacher">
+      <properties type="/3" name="ID" defaultValue="null"/>
+      <properties type="/2" name="Name" defaultValue="null"/>
+      <properties type="/2" name="Surname" defaultValue="null"/>
+      <properties type="/0/@odcomplextype.1" name="PersonInfo" defaultValue="null"/>
+      <propertykeyref alias="ID" property="/0/@entitytypes.0/@properties.0"/>
+    </entitytypes>
+    <entitytypes name="Student">
+      <properties type="/3" name="Number" defaultValue="null"/>
+      <properties type="/2" name="Name" defaultValue="null"/>
+      <properties type="/2" name="Surname" defaultValue="null"/>
+      <properties type="/0/@odcomplextype.1" name="PersonInfo" defaultValue="null"/>
+      <propertykeyref alias="Number" property="/0/@entitytypes.1/@properties.0"/>
+    </entitytypes>
+  </OData:ODSchema>
+  <OData:ODEntityContainer>
+    <entitysets name="Teachers"/>
+    <entitysets name="Students"/>
+  </OData:ODEntityContainer>
+  <OData:ODPrimitiveType name="String"/>
+  <OData:ODPrimitiveType name="Integer"/>
+  <OData:ODPrimitiveType name="Boolean"/>
+</xmi:XMI>
