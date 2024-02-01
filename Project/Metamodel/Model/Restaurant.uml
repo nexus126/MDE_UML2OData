@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_12xG8LEzEe6pUPBdYwq53A" name="R">
+  <packageImport xmi:id="_YbNOkLOpEe6pUPBdYwq53A">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9DtOwLEzEe6pUPBdYwq53A" name="Restaurant">
+    <ownedAttribute xmi:id="_DIifALE0Ee6pUPBdYwq53A" name="Name" isID="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_DWT3YLR4Ee6pUPBdYwq53A" name="Address" type="_VvgZILE_Ee6pUPBdYwq53A" isID="true"/>
+    <ownedAttribute xmi:id="_R0hAQMBTEe6LI4W9EHuUIQ" name="kitchen">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_f7Q4gMBTEe6LI4W9EHuUIQ" name="isGlutenFree">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_-dE1AMBTEe6LI4W9EHuUIQ" name="OpeningDays" type="_nrRRIMBTEe6LI4W9EHuUIQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_VvgZILE_Ee6pUPBdYwq53A" name="Address">
+    <ownedAttribute xmi:id="_k8ExULOtEe6pUPBdYwq53A" name="Street">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Z4VrMLO6Ee6pUPBdYwq53A"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_0otCQLOtEe6pUPBdYwq53A" name="City">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bCzTMLO6Ee6pUPBdYwq53A"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_3vqzMLOtEe6pUPBdYwq53A" name="State">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cHGBwLO6Ee6pUPBdYwq53A"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_f6wgoLO6Ee6pUPBdYwq53A" name="ZipCode">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k3WWcLO6Ee6pUPBdYwq53A"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_mW754LO6Ee6pUPBdYwq53A" name="Country">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rbzh8LO6Ee6pUPBdYwq53A"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_nrRRIMBTEe6LI4W9EHuUIQ" name="OpeningDays">
+    <ownedLiteral xmi:id="_ov26oMBTEe6LI4W9EHuUIQ" name="Tuesday"/>
+    <ownedLiteral xmi:id="_sO3YIMBTEe6LI4W9EHuUIQ" name="Wednesday"/>
+    <ownedLiteral xmi:id="_tY-a0MBTEe6LI4W9EHuUIQ" name="Thursday"/>
+    <ownedLiteral xmi:id="_vrsrYMBTEe6LI4W9EHuUIQ" name="Friday"/>
+    <ownedLiteral xmi:id="_xX5HcMBTEe6LI4W9EHuUIQ" name="Saturday"/>
+    <ownedLiteral xmi:id="_y3qREMBTEe6LI4W9EHuUIQ" name="Sunday"/>
+  </packagedElement>
+</uml:Model>
