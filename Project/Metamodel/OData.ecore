@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="OData" nsURI="http://odatamodel.com" nsPrefix="OData">
+  <eClassifiers xsi:type="ecore:EClass" name="ODService">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="odschema" upperBound="-1"
+        eType="#//ODSchema" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODSchema">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="namespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entitycontainer" eType="#//ODEntityContainer"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="odenumtype" upperBound="-1"
+        eType="#//ODEnumType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="odcomplextype" upperBound="-1"
+        eType="#//ODComplexType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entitytypes" upperBound="-1"
+        eType="#//ODEntityType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODEntityContainer" eSuperTypes="#//ODEntitySet">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="odsingleton" upperBound="-1"
+        eType="#//ODSingleton" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entitysets" upperBound="-1"
+        eType="#//ODEntitySet" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODEntitySet" eSuperTypes="#//ODExposedEntity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="includeInServiceDocument"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODMember" eSuperTypes="#//ODNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODEnumType" eSuperTypes="#//ODPrimitiveType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isFlags" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="odmember" upperBound="-1"
+        eType="#//ODMember" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="underlyingType" eType="#//ODPrimitiveType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODComplexType" eSuperTypes="#//ODStructuredType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ODSingleton" eSuperTypes="#//ODExposedEntity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ODPrimitiveType" eSuperTypes="#//ODType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ODStructuredType" eSuperTypes="#//ODType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="openType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navigationproperties" upperBound="-1"
+        eType="#//ODNavigationProperty" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//ODProperty" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="baseType" eType="#//ODStructuredType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODExposedEntity" eSuperTypes="#//ODNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navigationpropertybindings"
+        upperBound="-1" eType="#//ODNavigationPropertyBinding" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entitytype" eType="#//ODEntityType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODType" eSuperTypes="#//ODNamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ODProperty" eSuperTypes="#//ODElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxlength" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unicode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODPropertyKeyRef">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//ODProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODTypedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multivalue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ODType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODElement" eSuperTypes="#//ODTypedElement #//ODNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nullable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODNavigationProperty" eSuperTypes="#//ODElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="containsTarget" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="partner" eType="#//ODNavigationProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODNavigationPropertyBinding">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ODEntityType" eSuperTypes="#//ODStructuredType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertykeyref" upperBound="-1"
+        eType="#//ODPropertyKeyRef" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>
