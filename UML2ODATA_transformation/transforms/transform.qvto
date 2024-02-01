@@ -1,0 +1,180 @@
+modeltype UML2 'strict' uses 'http://www.eclipse.org/uml2/2.0.0/UML';
+modeltype OData 'strict' uses OData('http://odatamodel.com');
+
+transformation Transformation(in source: UML2, out target: OData);
+
+main() {
+
+source.rootObjects()[Model] -> map ModelToODSchema();
+
+}
+
+mapping Model::ModelToODSchema() : ODSchema{
+//s.schemaNamespace = "com.example" + m.name
+result.namespace := "com.example.OData." + self.name;
+//s.schemaAlias = m.name
+result.alias := "Ciao";
+
+source.rootObjects()[Package] -> PackageToODEntityContainer();
+
+result.odcomplextype := self.packagedElement[DataType].map DataTypeToODComplexType();
+
+result.entitytypes := self.packagedElement[Class].map ClassToODEntityType();
+
+result.odenumtype := self.packagedElement[Enumeration].map EnumerationToODEnumType();
+
+}
+
+mapping Package::PackageToODEntityContainer() : ODEntityContainer{
+	
+result.entitysets := self.packagedElement[Class].map ClassToODEntitySet();
+		
+}
+
+mapping Class::ClassToODEntityType() : ODEntityType {
+	
+	// IMPORTANT INFO: ODEntityType is a ODStructuredType and thus it inherits generalization's attributes
+	// IMPORTANT INFO: ODEntityType is a ODType and thus it inherits generalization's attributes
+	
+	result.name := self.name ;
+	
+	var AllAttributes : OrderedSet(Property); //all properties (included IDs)
+	
+	self.ownedAttribute->forEach(i){if (i.association = null) AllAttributes+=i;};
+	
+	result.properties := AllAttributes.map PropertyToODProperty();
+	
+	var IDAttributes : OrderedSet(Property);	//properties used as ID
+	
+	self.ownedAttribute->forEach(i){if (i.isID) IDAttributes+=i;};
+	
+	result.propertykeyref := IDAttributes.map PropertyToODPropertyKeyRef();
+	
+	var associationAttributes : OrderedSet(Property);
+	
+	self.ownedAttribute->forEach(i){if (i.association != null) associationAttributes+=i ;};
+	
+	result.navigationproperties := associationAttributes.map PropertyToODNavigationProperty();
+	
+}
+
+mapping Property::PropertyToODNavigationProperty() : ODNavigationProperty {
+	
+	result.name := self.name;
+	
+	if (self.aggregation != null) result.containsTarget := true;
+	
+	var TypeName := self.type.name.toString();
+	
+	result.type := self.type.map TypeToODPrimitiveType();
+	
+	var partnerProperty : Property;
+	
+	self.association.memberEnd->forEach(i) { if (i.namespace.name != self.name ){ partnerProperty := i ; break;}};
+	
+	result._partner:=partnerProperty.resolveone(ODNavigationProperty);
+	
+	if(result._partner!=null){
+	
+		result._partner._partner := self.resolveone(ODNavigationProperty);
+		
+		}
+	
+}
+
+mapping Class::ClassToODEntitySet() : ODEntitySet {
+	
+	result.name := self.name + "s";
+	
+	result.entitytype := self.resolveone(ODEntityType);
+	
+	// ODEntitySet can have an ODExposedEntity which can have one or more ODNavigationPropertyBindings
+	
+	var associations : OrderedSet(Association);
+		
+	self.ownedAttribute->forEach(i) { if (i.association != null) associations += i.association;};
+	
+	result.navigationpropertybindings := associations.map AssociationToODNavigationPropertyBinding(result.name);
+	
+}
+
+mapping Association::AssociationToODNavigationPropertyBinding(EntitySetName : String) : ODNavigationPropertyBinding {
+	
+	//IMPORTANT! ODNavigationPropertyBinding.path is the property name , ODNavigationPropertyBinding.target is the ODEntitySet's name to which the ODNavigationProperty refers
+	
+	self.memberEnd->forEach(i){ if(i.namespace.name+"s" = EntitySetName){ 										
+																		result.path := i.name;} else {
+																		result.target := i.namespace.name+"s"; }//if (i.namespace.name+"s" != EntitySetName)
+		
+		};
+	
+}
+
+mapping Property::PropertyToODProperty() : ODProperty {
+	
+	result.name := self.name;
+	
+	var TypeName := self.type.name.toString();
+	
+	if(TypeName != "String" and TypeName != "Integer" and TypeName != "Boolean" and TypeName != "Real"){
+	
+	 result.type := self.type.resolveone(ODComplexType); //property has a ODComplexType as ODType
+	 
+	 }else{
+		
+		result.type := result.type := self.type.map TypeToODPrimitiveType();
+	 
+	 };
+	
+	result.defaultValue := self.defaultValue.toString();
+	/*
+	  Other ODProperty attributes like "result.maxLength", "result.unicode" , "result.scale" cannot be assigned,
+      since there are structural and conceptual differences between the two metamodels.
+      These attributes will be assigned their default value.
+	*/
+}
+
+																mapping Property::PropertyToODPropertyKeyRef() : ODPropertyKeyRef {
+																	result._property := self.resolveone(ODProperty);
+																	result.alias := self.name;
+																}
+
+mapping DataType::DataTypeToODComplexType() : ODComplexType{
+
+// IMPORTANT INFO: ODComplexType is a ODStructuredType an thus it inherits generalization's attributes
+
+result.name := self.name;
+result.baseType := self.resolveone(ODComplexType); //It is imposed only when we are defyning a ODComplexType which is an extension of another ODComplexType
+
+var ComplexAttributes : OrderedSet(Property); 
+
+result.properties := self.ownedAttribute.map PropertyToODProperty();  
+
+
+}
+
+mapping  EnumerationLiteral::EnumerationLiteralToODMember() : ODMember{
+	
+	result.name := self.name;
+		
+}
+
+mapping Enumeration::EnumerationToODEnumType() : ODEnumType{
+	
+	result.odmember := self.ownedLiteral.map EnumerationLiteralToODMember();
+	
+	
+}
+
+mapping Type::TypeToODPrimitiveType() : ODPrimitiveType{
+	
+	result.name := self.name;
+	
+}
+
+mapping Type::TypeToODType() : ODType{
+
+	result.name := self.name;
+	
+
+}
