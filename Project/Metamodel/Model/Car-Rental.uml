@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_12xG8LEzEe6pUPBdYwq53A" name="CR">
+  <packageImport xmi:id="_YbNOkLOpEe6pUPBdYwq53A">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9DtOwLEzEe6pUPBdYwq53A" name="Hub">
+    <ownedAttribute xmi:id="_DIifALE0Ee6pUPBdYwq53A" name="ID" isID="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_44JUYMB1Ee6LI4W9EHuUIQ" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_-R8DkMB1Ee6LI4W9EHuUIQ" name="surname">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_JP1-wMB6Ee6LI4W9EHuUIQ" name="Location" type="_8KuYEMB4Ee6LI4W9EHuUIQ"/>
+    <ownedAttribute xmi:id="_OGx4gMB6Ee6LI4W9EHuUIQ" name="Cars" association="_rE7p4MB6Ee6LI4W9EHuUIQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_71A38LE8Ee6pUPBdYwq53A" name="Driver">
+    <ownedAttribute xmi:id="_DTPkELE9Ee6pUPBdYwq53A" name="FiscalCode" isID="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_sFsn8LFTEe6pUPBdYwq53A" name="Name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_gKK3YMB4Ee6LI4W9EHuUIQ" name="Surname">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_S31zwMB6Ee6LI4W9EHuUIQ" name="Car" type="_d8uS8MB5Ee6LI4W9EHuUIQ" association="_BYz7oMB7Ee6LI4W9EHuUIQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xm0rYMB6Ee6LI4W9EHuUIQ"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_8KuYEMB4Ee6LI4W9EHuUIQ" name="Location">
+    <ownedAttribute xmi:id="__XAG0MB4Ee6LI4W9EHuUIQ" name="Street">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_KCAQ8MB5Ee6LI4W9EHuUIQ" name="City">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_RPhAgMB5Ee6LI4W9EHuUIQ" name="Civic">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_d8uS8MB5Ee6LI4W9EHuUIQ" name="Car">
+    <ownedAttribute xmi:id="_hwHFAMB5Ee6LI4W9EHuUIQ" name="CarRegistration" isID="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_-5Ke0MB5Ee6LI4W9EHuUIQ" name="Price">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_eCjYsMB6Ee6LI4W9EHuUIQ" name="Hub" association="_rE7p4MB6Ee6LI4W9EHuUIQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hlrhMMB6Ee6LI4W9EHuUIQ"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_jYtlEMB6Ee6LI4W9EHuUIQ" name="isAvailable">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_34ATwMB6Ee6LI4W9EHuUIQ" name="Driver" association="_BYz7oMB7Ee6LI4W9EHuUIQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__HgnYMB6Ee6LI4W9EHuUIQ"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_rE7p4MB6Ee6LI4W9EHuUIQ" name="Car-Hub" memberEnd="_OGx4gMB6Ee6LI4W9EHuUIQ _eCjYsMB6Ee6LI4W9EHuUIQ"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_BYz7oMB7Ee6LI4W9EHuUIQ" name="Car-Driver" memberEnd="_34ATwMB6Ee6LI4W9EHuUIQ _S31zwMB6Ee6LI4W9EHuUIQ"/>
+</uml:Model>
