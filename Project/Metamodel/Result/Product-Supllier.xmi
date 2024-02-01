@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:OData="http://odatamodel.com" xsi:schemaLocation="http://odatamodel.com ../OData.ecore">
+  <OData:ODSchema namespace="com.example.OData.PS" alias="Ciao">
+    <odcomplextype name="Address" baseType="/0/@odcomplextype.0">
+      <properties type="/2" name="Street" defaultValue="null"/>
+      <properties type="/2" name="City" defaultValue="null"/>
+      <properties type="/2" name="State" defaultValue="null"/>
+      <properties type="/2" name="ZipCode" defaultValue="null"/>
+      <properties type="/2" name="Country" defaultValue="null"/>
+    </odcomplextype>
+    <entitytypes name="Product">
+      <navigationproperties type="/5" name="Supplier" containsTarget="true" partner="/0/@entitytypes.0/@navigationproperties.0"/>
+      <properties type="/3" name="ID" defaultValue="null"/>
+      <properties type="/0/@odcomplextype.0" name="Address" defaultValue="null"/>
+      <propertykeyref alias="ID" property="/0/@entitytypes.0/@properties.0"/>
+    </entitytypes>
+    <entitytypes name="Supplier">
+      <navigationproperties type="/4" name="Products" containsTarget="true"/>
+      <properties type="/3" name="ID" defaultValue="null"/>
+      <properties type="/2" name="Name" defaultValue="null"/>
+      <propertykeyref alias="ID" property="/0/@entitytypes.1/@properties.0"/>
+    </entitytypes>
+  </OData:ODSchema>
+  <OData:ODEntityContainer>
+    <entitysets name="Suppliers">
+      <navigationpropertybindings path="Products" target="Products"/>
+    </entitysets>
+    <entitysets name="Products">
+      <navigationpropertybindings path="Supplier" target="Suppliers"/>
+    </entitysets>
+  </OData:ODEntityContainer>
+  <OData:ODPrimitiveType name="String"/>
+  <OData:ODPrimitiveType name="Integer"/>
+  <OData:ODPrimitiveType name="Product"/>
+  <OData:ODPrimitiveType name="Supplier"/>
+</xmi:XMI>
