@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:OData="http://odatamodel.com" xsi:schemaLocation="http://odatamodel.com ../OData.ecore">
+  <OData:ODSchema namespace="com.example.OData.CP" alias="Ciao">
+    <entitytypes name="Player">
+      <navigationproperties name="Coach" containsTarget="true" partner="/0/@entitytypes.1/@navigationproperties.0"/>
+      <properties type="/2" name="IdNumber" defaultValue="null"/>
+      <properties type="/3" name="Name" defaultValue="null"/>
+      <propertykeyref alias="IdNumber" property="/0/@entitytypes.0/@properties.0"/>
+    </entitytypes>
+    <entitytypes name="Coach">
+      <navigationproperties name="Players" containsTarget="true" partner="/0/@entitytypes.0/@navigationproperties.0"/>
+      <properties type="/2" name="ID" defaultValue="null"/>
+      <properties type="/3" name="name" defaultValue="null"/>
+      <properties type="/3" name="surname" defaultValue="null"/>
+      <propertykeyref alias="ID" property="/0/@entitytypes.1/@properties.0"/>
+      <propertykeyref alias="name" property="/0/@entitytypes.1/@properties.1"/>
+      <propertykeyref alias="surname" property="/0/@entitytypes.1/@properties.2"/>
+    </entitytypes>
+  </OData:ODSchema>
+  <OData:ODEntityContainer>
+    <entitysets name="Players">
+      <navigationpropertybindings path="Coach" target="Coachs"/>
+    </entitysets>
+    <entitysets name="Coachs">
+      <navigationpropertybindings path="Players" target="Players"/>
+    </entitysets>
+  </OData:ODEntityContainer>
+  <OData:ODPrimitiveType name="Integer"/>
+  <OData:ODPrimitiveType name="String"/>
+</xmi:XMI>
